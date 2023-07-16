@@ -1,0 +1,135 @@
+npx create-react-app blood-donation-app
+
+
+
+cd blood-donation-app
+
+
+
+
+npm start
+
+
+
+
+import React from 'react';
+import './App.css';
+
+function App() {
+  return (
+    <div className="App">
+      <h1>Blood Donation App</h1>
+      {/* Add your components here */}
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+
+import React, { useState } from 'react';
+
+function DonorForm({ onAddDonor }) {
+  const [name, setName] = useState('');
+  const [bloodType, setBloodType] = useState('');
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (name && bloodType && email) {
+      const newDonor = {
+        name,
+        bloodType,
+        email
+      };
+      onAddDonor(newDonor);
+      setName('');
+      setBloodType('');
+      setEmail('');
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+      <input type="text" placeholder="Blood Type" value={bloodType} onChange={(e) => setBloodType(e.target.value)} />
+      <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <button type="submit">Add Donor</button>
+    </form>
+  );
+}
+
+export default DonorForm;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React from 'react';
+
+function DonorList({ donors }) {
+  return (
+    <ul>
+      {donors.map((donor, index) => (
+        <li key={index}>
+          <h3>{donor.name}</h3>
+          <p>Blood Type: {donor.bloodType}</p>
+          <p>Email: {donor.email}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default DonorList;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState } from 'react';
+import './App.css';
+import DonorForm from './components/DonorForm';
+import DonorList from './components/DonorList';
+
+function App() {
+  const [donors, setDonors] = useState([]);
+
+  const addDonor = (newDonor) => {
+    setDonors([...donors, newDonor]);
+  }
+
+  return (
+    <div className="App">
+      <h1>Blood Donation App</h1>
+      <DonorForm onAddDonor={addDonor} />
+      <DonorList donors={donors} />
+    </div>
+  );
+}
+
+export default App;
