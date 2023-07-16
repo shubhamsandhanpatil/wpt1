@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Movie</title>
+</head>
+<body>
+  <h1>Add Movie</h1>
+  <form action="/add-movie" method="POST">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required>
+    <br>
+
+    <label for="genre">Genre:</label>
+    <input type="text" id="genre" name="genre" required>
+    <br>
+
+    <label for="director">Director:</label>
+    <input type="text" id="director" name="director" required>
+    <br>
+
+    <label for="releaseYear">Release Year:</label>
+    <input type="number" id="releaseYear" name="releaseYear" required>
+    <br>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required></textarea>
+    <br>
+
+    <input type="submit" value="Add Movie">
+  </form>
+</body>
+</html>
+
+
+
+
+------------------------------------------------------------
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Movies</title>
+</head>
+<body>
+  <h1>Add Movies</h1>
+  <form action="/add-movies" method="POST">
+    <div id="movies-container">
+      <div class="movie">
+        <label for="title">Title:</label>
+        <input type="text" name="movies[0][title]" required>
+        <br>
+
+        <label for="genre">Genre:</label>
+        <input type="text" name="movies[0][genre]" required>
+        <br>
+
+        <label for="director">Director:</label>
+        <input type="text" name="movies[0][director]" required>
+        <br>
+
+        <label for="releaseYear">Release Year:</label>
+        <input type="number" name="movies[0][releaseYear]" required>
+        <br>
+
+        <label for="description">Description:</label>
+        <textarea name="movies[0][description]" required></textarea>
+        <br>
+      </div>
+    </div>
+
+    <button type="button" onclick="addMovie()">Add Another Movie</button>
+    <br>
+
+    <input type="submit" value="Add Movies">
+  </form>
+
+  <script>
+    let movieCount = 1;
+
+    function addMovie() {
+      const moviesContainer = document.getElementById('movies-container');
+      const movieTemplate = document.querySelector('.movie');
+
+      const newMovie = movieTemplate.cloneNode(true);
+      newMovie.innerHTML = newMovie.innerHTML.replace(/\[0\]/g, `[${movieCount}]`);
+
+      moviesContainer.appendChild(newMovie);
+      movieCount++;
+    }
+  </script>
+</body>
+</html>
