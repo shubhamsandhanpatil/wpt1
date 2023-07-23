@@ -1,42 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Blood Donation Form</title>
+    <title>Blood Donation Form</title>
 </head>
 <body>
-  <h1>Blood Donation Form</h1>
-  <form action="/donate-blood" method="POST">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
-    <br>
-
-    <label for="age">Age:</label>
-    <input type="number" id="age" name="age" required>
-    <br>
-
-    <label for="bloodType">Blood Type:</label>
-    <select id="bloodType" name="bloodType" required>
-      <option value="">Select Blood Type</option>
-      <option value="A+">A+</option>
-      <option value="A-">A-</option>
-      <option value="B+">B+</option>
-      <option value="B-">B-</option>
-      <option value="AB+">AB+</option>
-      <option value="AB-">AB-</option>
-      <option value="O+">O+</option>
-      <option value="O-">O-</option>
-    </select>
-    <br>
-
-    <label for="contact">Contact Number:</label>
-    <input type="tel" id="contact" name="contact" required>
-    <br>
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <br>
-
-    <input type="submit" value="Donate">
-  </form>
+    <h2>Blood Donation Form</h2>
+    <form id="bloodDonationForm" action="#" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="bloodType">Blood Type:</label>
+        <select id="bloodType" name="bloodType" required>
+            <option value="">Select Blood Type</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+        </select><br><br>
+        
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br><br>
+        
+        <label for="weight">Weight (in kg):</label>
+        <input type="number" id="weight" name="weight" required><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+    
+    <script>
+        // Form validation
+        var form = document.getElementById("bloodDonationForm");
+        form.addEventListener("submit", function(event) {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var bloodType = document.getElementById("bloodType").value;
+            var age = document.getElementById("age").value;
+            var weight = document.getElementById("weight").value;
+            
+            if (name === "" || email === "" || bloodType === "" || age === "" || weight === "") {
+                alert("Please fill in all fields.");
+                event.preventDefault();
+            }
+            
+            // Additional validations can be added here
+            
+        });
+    </script>
 </body>
 </html>
